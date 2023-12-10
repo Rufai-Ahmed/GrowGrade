@@ -35,13 +35,13 @@ export const sendToken = async (user: any) => {
       name: user.name,
     };
 
-    ejs.renderFile(filePath, { data });
+    const html = await ejs.renderFile(filePath, { data });
 
     await transport.sendMail({
       to: user.email,
       from: "GrowGrade <abbeyrufai234@gmail.com>",
       subject: "Account Verification",
-      html: "<p>Hello</p>",
+      html,
     });
   } catch (error) {
     console.log(error);
