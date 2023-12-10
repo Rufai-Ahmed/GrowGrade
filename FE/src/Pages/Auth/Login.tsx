@@ -107,7 +107,7 @@ export const Login = () => {
 
 					<button
 						type="submit"
-						className="bg-gradient-to-r from-[#07cddd] to-[#51e6ac] text-white py-4 px-64 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 ml-[15px]"
+						className="bg-gradient-to-r from-[#07cddd] to-[#51e6ac] text-white py-4 px-56 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 ml-[15px]"
 					>
 						Log in
 					</button>
