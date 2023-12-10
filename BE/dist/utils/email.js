@@ -37,7 +37,9 @@ const sendToken = (user) => __awaiter(void 0, void 0, void 0, function* () {
         });
         const filePath = path_1.default.join(__dirname, "../views/index.ejs");
         const data = {
-            name: user.name,
+            name: user.schoolName,
+            token: user.token,
+            url: `http://localhost:5173/verify/${user._id}`,
         };
         const html = yield ejs_1.default.renderFile(filePath, { data });
         yield transport.sendMail({

@@ -32,7 +32,9 @@ export const sendToken = async (user: any) => {
     const filePath = path.join(__dirname, "../views/index.ejs");
 
     const data = {
-      name: user.name,
+      name: user.schoolName,
+      token: user.token,
+      url: `http://localhost:5173/verify/${user._id}`,
     };
 
     const html = await ejs.renderFile(filePath, { data });
