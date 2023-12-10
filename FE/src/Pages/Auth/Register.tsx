@@ -2,8 +2,29 @@ import React from "react";
 import doodle from "../../Assets/doodle.png";
 import workers from "../../Assets/working.png";
 import logo from "../../Assets/logo.png";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export const Register = () => {
+  const schema = yup.object({
+    schoolName: yup.string().required(),
+    email: yup.string().required(),
+    password: yup.string().required(),
+  });
+
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onHandleSubmit = handleSubmit((data) => {
+    console.log(data);
+  });
+
   return (
     <div>
       <div className="w-full flex h-screen ">
@@ -23,6 +44,7 @@ export const Register = () => {
             <img src={workers} className="w-[80%] object-contain  " alt="" />
           </div>
         </div>
+
         <div className="w-[50%] h-full flex  justify-center ">
           <div className="w-[70%]   ">
             <div className="w-full mt-10 pb-5 flex justify-center ">
@@ -39,16 +61,20 @@ export const Register = () => {
               </div>
             </div>
 
-            <form className="w-full mt-10 " action="">
+            <form className="w-full mt-10 " onSubmit={onHandleSubmit}>
               <div className="mt-5">
                 <div className="text-[19px] text-[#1965f2] font-bold mb-1 ">
                   School Name
                 </div>
                 <input
+                  {...register("schoolName")}
                   type="text"
                   className="pl-4 bg-gray-200 h-10 flex w-full outline-none rounded-md "
                   placeholder="Please input your school's name here"
                 />
+                <div className="w-full text-[15px] text-[#1965f2]  ">
+                  {errors.schoolName?.message}
+                </div>
               </div>
 
               <div className="mt-5">
@@ -56,10 +82,14 @@ export const Register = () => {
                   Email
                 </div>
                 <input
+                  {...register("email")}
                   type="email"
                   className="pl-4 bg-gray-200 h-10 flex w-full outline-none rounded-md "
                   placeholder="Please input your school's email here"
                 />
+                <div className="w-full text-[15px] text-[#27316f]  ">
+                  {errors.email?.message}
+                </div>
               </div>
 
               <div className="mt-5">
@@ -67,10 +97,14 @@ export const Register = () => {
                   Password
                 </div>
                 <input
+                  {...register("password")}
                   type="text"
                   className="pl-4 bg-gray-200 h-10 flex w-full outline-none rounded-md "
                   placeholder="Please enter a secure password here"
                 />
+                <div className="w-full text-[15px] text-[#f75d72]  ">
+                  {errors.password?.message}
+                </div>
               </div>
 
               <button
