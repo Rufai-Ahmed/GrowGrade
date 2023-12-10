@@ -1,8 +1,8 @@
 import { Schema, model } from "mongoose";
-import { iUserData } from "../utils/interface";
+import { iSchoolData } from "../utils/interface";
 import { SCHOOL } from "../utils/enums";
 
-const userModel = new Schema<iUserData>(
+const schoolModel = new Schema<iSchoolData>(
   {
     email: {
       type: String,
@@ -33,4 +33,4 @@ const userModel = new Schema<iUserData>(
   { timestamps: true }
 );
 
-export default model<iUserData>("users", userModel);
+export default model<iSchoolData>("schools", schoolModel);

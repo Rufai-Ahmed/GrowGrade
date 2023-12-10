@@ -3,7 +3,7 @@ import env from "dotenv";
 
 env.config();
 
-const url: string | undefined = process.env.DATABASE_STRING;
+const url: string | undefined = process.env.DATABASE_URL;
 export const mainConnection = () => {
   try {
     connect(url!).then(() => {

@@ -8,7 +8,7 @@ export interface iError {
   success: boolean;
 }
 
-export interface iUser {
+export interface iSchool {
   email: string;
   schoolName: string;
   password: string;
@@ -18,4 +18,4 @@ export interface iUser {
   verify: boolean;
 }
 
-export interface iUserData extends iUser, Document {}
+export interface iSchoolData extends iSchool, Document {}
