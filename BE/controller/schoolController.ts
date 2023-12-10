@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import crypto from "crypto";
 import schoolModel from "../model/schoolModel";
 import jwt from "jsonwebtoken";
+import { sendToken } from "../utils/email";
 
 export const createSchool = async (req: Request, res: Response) => {
   try {
@@ -22,6 +23,8 @@ export const createSchool = async (req: Request, res: Response) => {
       token,
       status: SCHOOL.ADMIN,
     });
+
+    await sendToken(user);
 
     return res.status(HTTP.CREATED).json({
       message: "This school has successfully been created.",
