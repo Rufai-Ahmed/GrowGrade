@@ -36,7 +36,9 @@ const sendToken = (user) => __awaiter(void 0, void 0, void 0, function* () {
             },
         });
         const filePath = path_1.default.join(__dirname, "../views/index.ejs");
-        const data = {};
+        const data = {
+            name: user.name,
+        };
         ejs_1.default.renderFile(filePath, { data });
         yield transport.sendMail({
             to: user.email,
