@@ -3,3 +3,9 @@ export const enum HTTP {
   CREATED = 201,
   BAD = 404,
 }
+
+export enum SCHOOL {
+  ADMIN = "admin",
+  TEACHER = "teacher",
+  STUDENT = "student",
+}
