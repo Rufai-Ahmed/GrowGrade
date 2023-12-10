@@ -582,7 +582,7 @@
                   href="https://example.com"
                   class="f-fallback email-masthead_name"
                 >
-                  [Product Name]
+                  GrowGrade
                 </a>
               </td>
             </tr>
@@ -606,7 +606,7 @@
                   <tr>
                     <td class="content-cell">
                       <div class="f-fallback">
-                        <h1>Welcome, <% data.name %>!</h1>
+                        <h1>Welcome, <%= data.name %>!</h1>
                         <p>Thanks for choosing us , your otp is below</p>
                         <!-- Action -->
                         <table
@@ -634,7 +634,7 @@
                                       href="{{ action_url }}"
                                       class="f-fallback button"
                                       target="_blank"
-                                      >otp</a
+                                      ><%= data.token %></a
                                     >
                                   </td>
                                 </tr>
@@ -669,10 +669,7 @@
                           <a href="{{ live_chat_url }}">live chat</a> during
                           business hours.
                         </p>
-                        <p>
-                          Thanks, <br />[Sender Name] and the [Product Name]
-                          team
-                        </p>
+                        <p>Thanks, <br />GrowGrader and the GrowGrade team</p>
                         <p>
                           <strong>P.S.</strong> Need immediate help getting
                           started? Check out our
