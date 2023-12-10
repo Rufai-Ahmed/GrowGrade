@@ -1,10 +1,9 @@
-import { Application, NextFunction, Request, Response } from "express";
-import { mainError } from "./error/mainError";
-import { HTTP } from "./utils/enums";
-import { handleError } from "./error/handleError";
+import { Application, Request, Response } from "express";
 
 export const mainApp = (app: Application) => {
   try {
+    app.use("/api/v1/", router);
+
     app.get("/", (req: Request, res: Response) => {
       try {
         res.status(200).json({

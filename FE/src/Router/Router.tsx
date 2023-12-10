@@ -3,6 +3,7 @@ import { Layout } from "../components/Layout";
 import { Register } from "../Pages/Auth/Register";
 import { Login } from "../Pages/Auth/Login";
 import { Verification } from "../Pages/Auth/Verification";
+import { Notification } from "../Pages/Auth/Notification";
 
 export const Router = createBrowserRouter([
   {
@@ -18,7 +19,11 @@ export const Router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/verify",
+    path: "/verify/:schoolID",
     element: <Verification />,
+  },
+  {
+    path: "/notify",
+    element: <Notification />,
   },
 ]);
