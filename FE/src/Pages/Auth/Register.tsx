@@ -109,7 +109,7 @@ export const Register = () => {
 
               <button
                 type="submit"
-                className="w-full py-3 mt-10 text-[25px] font-bold rounded-lg text-[#27316f] bg-gradient-to-r from-[#07cddd] to-[#51e6ac]"
+                className="w-full  py-3 mt-10 text-[25px] font-bold rounded-lg text-[#27316f] bg-gradient-to-r from-[#07cddd] to-[#51e6ac]"
               >
                 Sign up
               </button>
