@@ -31,7 +31,9 @@ export const sendToken = async (user: any) => {
 
     const filePath = path.join(__dirname, "../views/index.ejs");
 
-    const data = {};
+    const data = {
+      name: user.name,
+    };
 
     ejs.renderFile(filePath, { data });
 
