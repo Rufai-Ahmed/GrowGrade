@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createSchoolAccount } from "../../API/authApi";
+import { useNavigate } from "react-router-dom";
 
 export const Register = () => {
   const schema = yup.object({
@@ -13,6 +14,8 @@ export const Register = () => {
     email: yup.string().required(),
     password: yup.string().required(),
   });
+
+  const navigate = useNavigate();
 
   const {
     formState: { errors },
@@ -27,6 +30,7 @@ export const Register = () => {
 
     createSchoolAccount(data).then((res) => {
       console.log(res);
+      navigate("/notify");
     });
   });
 

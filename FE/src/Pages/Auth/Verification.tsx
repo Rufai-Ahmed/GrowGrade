@@ -1,5 +1,15 @@
+import { useForm } from "react-hook-form";
 import pix from "../../Assets/logo.png";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect, useState } from "react";
+import { verifySchoolAccount } from "../../API/authApi";
+import { useNavigate } from "react-router-dom";
+
 export const Verification = () => {
+  const [state, setState] = useState("");
+  const navigate = useNavigate();
+
   return (
     <div>
       <div>
@@ -22,13 +32,24 @@ export const Verification = () => {
               </div>
               <div className=" h-[100px] w-[100%]  mt-5  flex  justify-between">
                 <input
+                  value={state}
+                  onChange={(e) => {
+                    setState(e.target.value);
+                  }}
                   type="text"
                   placeholder=""
                   className=" h-[50%]  w-[100%] border flex outline-none  text-center text-[23px]"
                 />
               </div>
 
-              <button className=" h-[60px] w-[95%] border border-white hover:bg-gray-700 transition-all duration-300 mt-10  bg-[#595e60] rounded-xl text-white font-semibold">
+              <button
+                className=" h-[60px] w-[95%] border border-white hover:bg-gray-700 transition-all duration-300 mt-10  bg-[#595e60] rounded-xl text-white font-semibold"
+                onClick={() => {
+                  verifySchoolAccount({ token: state }).then((res) => {
+                    navigate("/login");
+                  });
+                }}
+              >
                 Submit
               </button>
             </div>
