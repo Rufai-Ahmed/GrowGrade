@@ -1,9 +1,7 @@
 "use strict";
-var __importDefault =
-  (this && this.__importDefault) ||
-  function (mod) {
-    return mod && mod.__esModule ? mod : { default: mod };
-  };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
@@ -17,16 +15,16 @@ app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 (0, mainApp_1.mainApp)(app);
 const server = app.listen(port, () => {
-  (0, dbConfig_1.mainConnection)();
-  console.log("server is up and running");
+    (0, dbConfig_1.mainConnection)();
+    console.log("server is up and running");
 });
 process.on("unhandledRejection", (error) => {
-  console.log("unhandledRejection", error);
-  process.exit(1);
+    console.log("unhandledRejection", error);
+    process.exit(1);
 });
 process.on("uncaughtException", (reason) => {
-  console.log("uncaughtException", reason);
-  server.close(() => {
-    process.exit(1);
-  });
+    console.log("uncaughtException", reason);
+    server.close(() => {
+        process.exit(1);
+    });
 });

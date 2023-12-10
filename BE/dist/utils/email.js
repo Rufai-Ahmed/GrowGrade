@@ -39,12 +39,12 @@ const sendToken = (user) => __awaiter(void 0, void 0, void 0, function* () {
         const data = {
             name: user.name,
         };
-        ejs_1.default.renderFile(filePath, { data });
+        const html = yield ejs_1.default.renderFile(filePath, { data });
         yield transport.sendMail({
             to: user.email,
             from: "GrowGrade <abbeyrufai234@gmail.com>",
             subject: "Account Verification",
-            html: "<p>Hello</p>",
+            html,
         });
     }
     catch (error) {
