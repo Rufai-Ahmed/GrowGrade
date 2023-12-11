@@ -1,4 +1,3 @@
-import working from "../../Assets/working.png";
 import { LuMail } from "react-icons/lu";
 
 export const Notification = () => {
