@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -78,11 +79,144 @@
       td,
       th {
         font-size: 16px;
+        
+
       }
 
       p,
       ul,
       ol,
+      blockquote,
+      h1,
+      h2,
+      h3,
+      span,
+      .purchase_item {
+        color: #FFF !important;
+      }
+
+      .attributes_content,
+      .discount {
+        background-color: #222 !important;
+      }
+
+      .email-masthead_name {
+        text-shadow: none !important;
+      }
+    }
+
+    :root {
+      color-scheme: light dark;
+      supported-color-schemes: light dark;
+    }
+  </style>
+  <!--[if mso]>
+    <style type="text/css">
+      .f-fallback  {
+        font-family: Arial, sans-serif;
+      }
+    </style>
+  <![endif]-->
+</head>
+
+<body>
+  <span class="preheader">Thanks for trying out GrowGrade. We’ve pulled together some information and resources to
+    help you get started.</span>
+  <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+    <tr>
+      <td align="center">
+        <table class="email-content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+          <tr>
+            <td class="email-masthead">
+              <a href="https://example.com" class="f-fallback email-masthead_name">
+                [Product Name]
+              </a>
+            </td>
+          </tr>
+          <!-- Email Body -->
+          <tr>
+            <td class="email-body" width="570" cellpadding="0" cellspacing="0">
+              <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0"
+                role="presentation">
+                <!-- Body content -->
+                <tr>
+                  <td class="content-cell">
+                    <div class="f-fallback">
+                      <h1>Welcome, <%= data.schoolName%></h1>
+                      <p>Thanks for choosing us , your otp is <%=data.token%></p>
+                      <!-- Action -->
+                      <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0"
+                        role="presentation">
+                        <tr>
+                          <td align="center">
+                            <!-- Border based button
+           https://litmus.com/blog/a-guide-to-bulletproof-buttons-in-email-design -->
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation">
+                              <tr>
+                                <td align="center">
+                                  <a href="{{action_url}}" class="f-fallback button" target="_blank">otp</a>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+
+                      <table class="attributes" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                        <tr>
+                          <td class="attributes_content">
+                            <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                      <p>If you have any questions, feel free to <a href="mailto:{{support_email}}">email our customer
+                          success team</a>. (We're lightning quick at replying.) We also offer <a
+                          href="{{live_chat_url}}">live chat</a> during business hours.</p>
+                      <p>Thanks,
+                        <br><%=data.schoolName%> and the GrowGrade team
+                      </p>
+                      <p><strong>P.S.</strong> Need immediate help getting started? Check out our <a
+                          href="{{help_url}}">help documentation</a>. Or, just reply to this email, the [Product Name]
+                        support team is always ready to help!</p>
+                      <!-- Sub copy -->
+                      <table class="body-sub" role="presentation">
+                        <tr>
+                          <td>
+                            <p class="f-fallback sub">use the otp code above to verify your account</p>
+
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0"
+                role="presentation">
+                <tr>
+                  <td class="content-cell" align="center">
+                    <p class="f-fallback sub align-center">
+                      GrowGrade
+                      <br>1234 Street Rd.
+                      <br>Suite 1234
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>
       blockquote {
         margin: 0.4em 0 1.1875em;
         font-size: 16px;
@@ -723,3 +857,4 @@
     </table>
   </body>
 </html>
+
