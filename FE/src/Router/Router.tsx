@@ -4,6 +4,7 @@ import { Register } from "../Pages/Auth/Register";
 import { Login } from "../Pages/Auth/Login";
 import { Verification } from "../Pages/Auth/Verification";
 import { Notification } from "../Pages/Auth/Notification";
+import Holder from "../Heropage/Holder";
 
 export const Router = createBrowserRouter([
   {
@@ -25,5 +26,9 @@ export const Router = createBrowserRouter([
   {
     path: "/notify",
     element: <Notification />,
+  },
+  {
+    path: "/hero",
+    element: <Holder />,
   },
 ]);
