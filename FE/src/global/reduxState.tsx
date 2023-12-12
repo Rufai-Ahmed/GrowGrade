@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: "",
+  toggle: false,
 };
 
 const reduxState = createSlice({
@@ -11,9 +12,13 @@ const reduxState = createSlice({
     addUser: (state, { payload }) => {
       state.user = payload;
     },
+
+    toggle: (state, { payload }) => {
+      state.toggle = payload;
+    },
   },
 });
 
-export const { addUser } = reduxState.actions;
+export const { addUser, toggle } = reduxState.actions;
 
 export default reduxState.reducer;

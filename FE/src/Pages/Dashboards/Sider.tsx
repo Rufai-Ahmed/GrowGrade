@@ -2,19 +2,63 @@ import {
   LuBookOpen,
   LuBookOpenCheck,
   LuLogOut,
+  LuMenu,
   LuSettings,
 } from "react-icons/lu";
 import logo from "../../Assets/logo.png";
-import { Md10K, MdDashboard, MdMoney, MdPerson2 } from "react-icons/md";
+import {
+  Md10K,
+  MdCancel,
+  MdDashboard,
+  MdMoney,
+  MdPerson2,
+} from "react-icons/md";
 import { PiChalkboardTeacher, PiExam, PiStudent } from "react-icons/pi";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toggle } from "../../global/reduxState";
 // import { PiStudent} from "react-icons/pi";
 
 export const Sider = () => {
+  const Toggle = useSelector((state: any) => state.toggle);
+  const dispatch = useDispatch();
+
   return (
-    <div>
-      <div className="w-[250px] bg-zinc-500 h-screen flex justify-center items-center ">
+    <div className="transition-all z-20 duration-300 w-full absolute bg-black">
+      <div className="absolute pt-5 pl-10 md:hidden ">
+        {Toggle ? (
+          ""
+        ) : (
+          <LuMenu
+            size={26}
+            onClick={() => {
+              dispatch(toggle(true));
+            }}
+          />
+        )}
+      </div>
+      <div
+        className={`w-[250px] ${
+          Toggle ? "flex" : "hidden"
+        } md:flex  overflow-y-auto fixed bg-zinc-500 h-screen  justify-center items-center  `}
+        style={
+          {
+            //   display: Toggle ? "flex" : "none",
+          }
+        }
+      >
         <div className="w-[calc(100%-40px)] flex flex-col justify-between  h-[calc(100vh-40px)] ">
+          {Toggle ? (
+            <MdCancel
+              className="absolute text-white md:hidden "
+              size={26}
+              onClick={() => {
+                dispatch(toggle(false));
+              }}
+            />
+          ) : (
+            ""
+          )}
           <div className=" border-b-[2px] pb-3 w-full flex justify-center ">
             <img src={logo} className="h-[30px]" alt="" />
           </div>
