@@ -1,36 +1,17 @@
-import { LuMail } from "react-icons/lu";
-import pix from "../../Assets/original-30f717a4bdaa31c02d1dcae13d68c561.png";
-
+import pix from "../src/assets/thankyou_gif.gif";
 export const Notification = () => {
   return (
-    <div>
-      <div className="animate-bounce mt-28 ">
-            <LuMail size={250} />
-          </div>
-      <div className="w-full items-center flex flex-col ">
-        <div className="w-[70%] flex flex-col items-center text-center text-[22px] mt-20 ">
-          <div>
-            Thank you for signing up with us, kindly check the <br /> provided
-            email's inbox to proceed
-          </div>
-          <button
-            type="submit"
-            className="rounded-sm bg-purple-500 w-full text-white mt-4 py-4 hover:cursor-pointer hover:translate-y-1 transition-all duration-300 hover:shadow-md  "
-          >
-            Verify Account
-          </button>
+    <div className=" flex items-center flex-col">
+    <div className=" flex justify-center mt-10 items-center flex-col">
+      <img src={pix}/>
 
-          
-        </div>
-        <div className="hidden lg:block bg-white col-span-3 m-4 mr-0 rounded-l-lg shadow-md h-[90%] ">
-        <div className="w-full h-[100%] ">
-          <img
-            src={pix}
-            className="w-full h-[100%] object-cover  rounded-l-lg "
-          />
-        </div>
+      <div className="flex text-[40px] font-bold">
+      Thanks for signing up with GrowGrade!
+      </div>
+      <div>
+      Kindly click the verification link sent to your email Id and continue by choosing your desired product and plan to get started.
       </div>
     </div>
-    </div>
-  );
+  </div>
+);
 };
