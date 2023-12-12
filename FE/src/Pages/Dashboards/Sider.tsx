@@ -15,8 +15,8 @@ export const Sider = () => {
     <div>
       <div className="w-[250px] bg-zinc-500 h-screen flex justify-center items-center ">
         <div className="w-[calc(100%-40px)] flex flex-col justify-between  h-[calc(100vh-40px)] ">
-          <div className=" border-b-[3px] pb-3 ">
-            <img src={logo} alt="" />
+          <div className=" border-b-[2px] pb-3 w-full flex justify-center ">
+            <img src={logo} className="h-[30px]" alt="" />
           </div>
 
           <div className="flex flex-col gap-3">
@@ -72,12 +72,12 @@ export const Sider = () => {
           </div>
 
           <div className="flex flex-col gap-3 ">
-            <div className="flex gap-5 text-white text-[20px] w-full hover:bg-gray-700 transition-all duration-300 cursor-pointer rounded-md pl-2 py-2 items-center  ">
-              <LuSettings size={30} /> <>Settings</>{" "}
+            <div className="flex gap-5 text-white text-[14px] w-full hover:bg-gray-700 transition-all duration-300 cursor-pointer rounded-md pl-2 py-2 items-center  ">
+              <LuSettings size={20} /> <>Settings</>{" "}
             </div>
 
-            <div className="flex gap-5 text-white text-[20px] w-full hover:bg-gray-700 transition-all duration-300 cursor-pointer rounded-md pl-2 py-2 items-center  ">
-              <LuLogOut size={30} /> <>Logout</>{" "}
+            <div className="flex gap-5 text-white text-[14px] w-full hover:bg-gray-700 transition-all duration-300 cursor-pointer rounded-md pl-2 py-2 items-center  ">
+              <LuLogOut size={20} /> <>Logout</>{" "}
             </div>
           </div>
         </div>
