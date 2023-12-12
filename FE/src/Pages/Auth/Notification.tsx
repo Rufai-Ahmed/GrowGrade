@@ -1,19 +1,16 @@
-import working from "../../Assets/working.png";
-import { LuMail } from "react-icons/lu";
-
+import pix from "../../assets/thankyou_gif.gif";
 export const Notification = () => {
   return (
-    <div>
-      <div className="w-full items-center flex flex-col ">
-        <div className="w-[70%] flex flex-col items-center text-center text-[30px] mt-20 ">
-          <div>
-            Thank you for signing up with us, kindly check the <br /> provided
-            email's inbox to proceed
-          </div>
+    <div className=" flex items-center flex-col">
+      <div className=" flex justify-center mt-10 items-center flex-col">
+        <img src={pix} />
 
-          <div className="animate-bounce mt-28 ">
-            <LuMail size={350} />
-          </div>
+        <div className="flex text-[40px] font-bold">
+          Thanks for signing up with GrowGrade!
+        </div>
+        <div>
+          Kindly click the verification link sent to your email Id and continue
+          by choosing your desired product and plan to get started.
         </div>
       </div>
     </div>
