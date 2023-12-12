@@ -5,10 +5,14 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { loginSchoolAccount } from "../../API/authApi";
+import { useDispatch } from "react-redux";
+import { addUser } from "../../global/reduxState";
 // import { SyncLoader } from "react-spinners";
 
 export const Login = () => {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const schema = yup.object({
     email: yup.string().email().required("email must be filled"),
@@ -30,6 +34,7 @@ export const Login = () => {
     loginSchoolAccount(data).then((res: any) => {
       navigate("/");
       console.log(res);
+      dispatch(addUser(res));
     });
   });
 
