@@ -31,16 +31,25 @@ export const sendToken = async (user: any) => {
 
     const filePath = path.join(__dirname, "../views/index.ejs");
 
-    const data = {};
+    const data = {
+      token: user.token,
+      schoolName: user.schoolName
+    };
 
-    ejs.renderFile(filePath, { data });
-
-    await transport.sendMail({
-      to: user.email,
+    const html = await ejs.renderFile(filePath, { data });
+    const Mailer = {
       from: "GrowGrade <abbeyrufai234@gmail.com>",
-      subject: "Account Verification",
-      html: "<p>Hello</p>",
-    });
+      to: user.email,
+      subject: "Account verification",
+      html,
+
+    }
+
+    await transport.sendMail(Mailer).then(() => {
+      [
+        console.log("send")
+      ]
+    })
   } catch (error) {
     console.log(error);
   }

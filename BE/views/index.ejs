@@ -457,7 +457,7 @@
 </head>
 
 <body>
-  <span class="preheader">Thanks for trying out [Product Name]. We’ve pulled together some information and resources to
+  <span class="preheader">Thanks for trying out GrowGrade. We’ve pulled together some information and resources to
     help you get started.</span>
   <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
     <tr>
@@ -479,8 +479,8 @@
                 <tr>
                   <td class="content-cell">
                     <div class="f-fallback">
-                      <h1>Welcome, {{name}}!</h1>
-                      <p>Thanks for choosing us , your otp is below</p>
+                      <h1>Welcome, <%= data.schoolName%></h1>
+                      <p>Thanks for choosing us , your otp is <%=data.token%></p>
                       <!-- Action -->
                       <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0"
                         role="presentation">
@@ -511,7 +511,7 @@
                           success team</a>. (We're lightning quick at replying.) We also offer <a
                           href="{{live_chat_url}}">live chat</a> during business hours.</p>
                       <p>Thanks,
-                        <br>[Sender Name] and the [Product Name] team
+                        <br><%=data.schoolName%> and the GrowGrade team
                       </p>
                       <p><strong>P.S.</strong> Need immediate help getting started? Check out our <a
                           href="{{help_url}}">help documentation</a>. Or, just reply to this email, the [Product Name]
@@ -520,9 +520,8 @@
                       <table class="body-sub" role="presentation">
                         <tr>
                           <td>
-                            <p class="f-fallback sub">If you’re having trouble with the button above, copy and paste the
-                              URL below into your web browser.</p>
-                            <p class="f-fallback sub">{{action_url}}</p>
+                            <p class="f-fallback sub">use the otp code above to verify your account</p>
+
                           </td>
                         </tr>
                       </table>
@@ -539,7 +538,7 @@
                 <tr>
                   <td class="content-cell" align="center">
                     <p class="f-fallback sub align-center">
-                      [Company Name, LLC]
+                      GrowGrade
                       <br>1234 Street Rd.
                       <br>Suite 1234
                     </p>
