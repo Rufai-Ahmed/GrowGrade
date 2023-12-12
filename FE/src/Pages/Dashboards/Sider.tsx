@@ -19,7 +19,7 @@ export const Sider = () => {
             <img src={logo} className="h-[30px]" alt="" />
           </div>
 
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2">
             {[
               {
                 title: "Dashboard",
@@ -73,11 +73,11 @@ export const Sider = () => {
 
           <div className="flex flex-col gap-3 ">
             <div className="flex gap-5 text-white text-[14px] w-full hover:bg-gray-700 transition-all duration-300 cursor-pointer rounded-md pl-2 py-2 items-center  ">
-              <LuSettings size={20} /> <>Settings</>{" "}
+              <LuSettings size={15} /> <>Settings</>{" "}
             </div>
 
             <div className="flex gap-5 text-white text-[14px] w-full hover:bg-gray-700 transition-all duration-300 cursor-pointer rounded-md pl-2 py-2 items-center  ">
-              <LuLogOut size={20} /> <>Logout</>{" "}
+              <LuLogOut size={15} /> <>Logout</>{" "}
             </div>
           </div>
         </div>
