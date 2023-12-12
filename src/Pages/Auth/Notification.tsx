@@ -1,4 +1,4 @@
-import pix from "../../Assets/thankyou_gif.gif";
+import pix from "../../assets/thankyou_gif.gif";
 export const Notification = () => {
   return (
     <div className=" flex items-center flex-col">
