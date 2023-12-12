@@ -35,14 +35,14 @@ export const Register = () => {
 
   return (
     <div>
-      <div className="w-full flex h-screen ">
+      <div className="w-full flex h-screen bg-[]">
         <div
-          className={`w-[50%] lg:block hidden h-full bg-gray-100 bg-bottom `}
+          className={`w-[50%] lg:block hidden h-full bg-bottom bg-[#445569]`}
           style={{ backgroundImage: `url(${doodle})` }}
         >
-          <div className="w-full h-[35vh] text-[55px] font-bold flex-col bg-[#f3f4f6] bg-opacity-80 flex items-center text-center  justify-center ">
+          <div className="w-full h-[35vh] text-[55px] font-bold flex-col bg-opacity-80 flex items-center text-center  justify-center text-white bg-[#445569]">
             Try GrowGrade now
-            <div className="text-[14px] text-gray-500 text-center  ">
+            <div className="text-[14px] text-white text-center  ">
               Get a chance to explore the product to its fullest before <br />
               choosing your ideal plan
             </div>
@@ -121,7 +121,7 @@ export const Register = () => {
 
               <button
                 type="submit"
-                className="w-full  py-2 mt-10 text-[20px] font-bold rounded-lg text-[#fff] bg-gradient-to-r from-[#4693d6] to-[#6DBEBB]"
+                className="w-full  py-2 mt-10 text-[20px] font-bold rounded-lg text-[#fff] bg-gradient-to-r from-[#445569] to-[#445569]"
               >
                 Sign up
               </button>
