@@ -7,6 +7,7 @@ import { Notification } from "../Pages/Auth/Notification";
 import { Admin } from "../Pages/Dashboards/Homes/Admin";
 import { Staff } from "../Pages/Dashboards/Homes/Staff";
 import { Student } from "../Pages/Dashboards/Homes/Student";
+import { DLayout } from "../Pages/Dashboards/DLayout";
 
 export const Router = createBrowserRouter([
   {
@@ -31,7 +32,7 @@ export const Router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Layout />,
+    element: <DLayout />,
     children: [
       {
         index: true,

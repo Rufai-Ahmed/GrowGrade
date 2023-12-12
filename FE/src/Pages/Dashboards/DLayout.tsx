@@ -2,11 +2,13 @@ import React from "react";
 import { Sider } from "./Sider";
 import { Outlet } from "react-router-dom";
 
-export const Layout = () => {
+export const DLayout = () => {
   return (
     <div>
-      <Sider />
-      <Outlet />
+      <div className="flex">
+        <Sider />
+        <Outlet />
+      </div>
     </div>
   );
 };

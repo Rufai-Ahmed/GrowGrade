@@ -1,5 +1,9 @@
 import React from "react";
 
 export const Sider = () => {
-  return <div>Sider</div>;
+  return (
+    <div>
+      <div className="w"></div>
+    </div>
+  );
 };
