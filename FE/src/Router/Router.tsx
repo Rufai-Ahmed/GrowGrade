@@ -19,7 +19,7 @@ export const Router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/verify",
+    path: "/verify/:schoolID",
     element: <Verification />,
   },
   {

@@ -1,17 +1,20 @@
-import React from "react";
 import doodle from "../../Assets/doodle.png";
 import workers from "../../Assets/working.png";
 import logo from "../../Assets/logo.png";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { createSchoolAccount } from "../../API/authApi";
+import { useNavigate } from "react-router-dom";
 
 export const Register = () => {
   const schema = yup.object({
     schoolName: yup.string().required(),
     email: yup.string().required(),
-    password: yup.string().required(),
+    password: yup.string().min(6).required(),
   });
+
+  const navigate = useNavigate();
 
   const {
     formState: { errors },
@@ -23,16 +26,21 @@ export const Register = () => {
 
   const onHandleSubmit = handleSubmit((data) => {
     console.log(data);
+
+    createSchoolAccount(data).then((res) => {
+      console.log(res);
+      navigate("/notify");
+    });
   });
 
   return (
     <div>
       <div className="w-full flex h-screen ">
         <div
-          className={`w-[50%] h-full bg-gray-100 bg-bottom `}
+          className={`w-[50%] lg:block hidden h-full bg-gray-100 bg-bottom `}
           style={{ backgroundImage: `url(${doodle})` }}
         >
-          <div className="w-full h-[35vh] text-[55px] font-bold flex-col bg-gray-100 flex items-center justify-center ">
+          <div className="w-full h-[35vh] text-[55px] font-bold flex-col bg-[#f3f4f6] bg-opacity-80 flex items-center text-center  justify-center ">
             Try GrowGrade now
             <div className="text-[14px] text-gray-500 text-center  ">
               Get a chance to explore the product to its fullest before <br />
@@ -45,8 +53,8 @@ export const Register = () => {
           </div>
         </div>
 
-        <div className="w-[50%] h-full flex  justify-center ">
-          <div className="w-[70%]   ">
+        <div className="w-[100%] lg:w-[50%]  flex items-center  justify-center ">
+          <div className="w-[70%] mb-10   ">
             <div className="w-full mt-10 pb-5 flex justify-center ">
               <img src={logo} className="w-[50%]" alt="" />
             </div>
@@ -57,7 +65,11 @@ export const Register = () => {
               </div>
               <div className="text-[14px] text-gray-500 ">
                 Already have an account?{" "}
-                <span className="text-orange-400">Sign in</span>{" "}
+                <span className="text-orange-400">
+                  <a href="/login" className="hover:underline">
+                    Sign in
+                  </a>
+                </span>{" "}
               </div>
             </div>
 
@@ -109,7 +121,7 @@ export const Register = () => {
 
               <button
                 type="submit"
-                className="w-full  py-3 mt-10 text-[25px] font-bold rounded-lg text-[#27316f] bg-gradient-to-r from-[#07cddd] to-[#51e6ac]"
+                className="w-full  py-2 mt-10 text-[25px] font-bold rounded-lg text-[#27316f] bg-gradient-to-r from-[#07cddd] to-[#51e6ac]"
               >
                 Sign up
               </button>

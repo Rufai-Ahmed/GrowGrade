@@ -11,9 +11,9 @@ const app: Application = express();
 app.use(cors());
 app.use(express.json());
 
-mainConnection();
 mainApp(app);
 const server = app.listen(port, () => {
+  mainConnection();
   console.log("server is up and running");
 });
 

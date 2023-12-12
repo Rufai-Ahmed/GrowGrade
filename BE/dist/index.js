@@ -13,9 +13,9 @@ const port = parseInt(process.env.PORT);
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
-(0, dbConfig_1.mainConnection)();
 (0, mainApp_1.mainApp)(app);
 const server = app.listen(port, () => {
+    (0, dbConfig_1.mainConnection)();
     console.log("server is up and running");
 });
 process.on("unhandledRejection", (error) => {

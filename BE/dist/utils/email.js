@@ -36,13 +36,17 @@ const sendToken = (user) => __awaiter(void 0, void 0, void 0, function* () {
             },
         });
         const filePath = path_1.default.join(__dirname, "../views/index.ejs");
-        const data = {};
-        ejs_1.default.renderFile(filePath, { data });
+        const data = {
+            name: user.schoolName,
+            token: user.token,
+            url: `http://localhost:5173/verify/${user._id}`,
+        };
+        const html = yield ejs_1.default.renderFile(filePath, { data });
         yield transport.sendMail({
             to: user.email,
             from: "GrowGrade <abbeyrufai234@gmail.com>",
             subject: "Account Verification",
-            html: "<p>Hello</p>",
+            html,
         });
     }
     catch (error) {
