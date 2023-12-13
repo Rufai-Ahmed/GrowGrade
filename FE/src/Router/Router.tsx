@@ -8,6 +8,7 @@ import { Staff } from "../Pages/Dashboards/Homes/Staff";
 import { Student } from "../Pages/Dashboards/Homes/Student";
 import { DLayout } from "../Pages/Dashboards/DLayout";
 import Verification from "../Pages/Auth/Verification";
+import Holder from "../Heropage/Holder";
 
 export const Router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const Router = createBrowserRouter([
   {
     path: "/notify",
     element: <Notification />,
+  },
+  {
+    path: "/hero",
+    element: <Holder />,
   },
   {
     path: "/dashboard",
