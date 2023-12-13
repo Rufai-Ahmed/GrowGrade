@@ -1,6 +1,5 @@
-import React from "react";
 import doodle from "../../Assets/doodle.png";
-import workers from "../../Assets/working.png";
+import workers from "../../Assets/img.png";
 import logo from "../../Assets/logo.png";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
@@ -12,7 +11,7 @@ export const Register = () => {
   const schema = yup.object({
     schoolName: yup.string().required(),
     email: yup.string().required(),
-    password: yup.string().required(),
+    password: yup.string().min(6).required(),
   });
 
   const navigate = useNavigate();
@@ -36,21 +35,21 @@ export const Register = () => {
 
   return (
     <div>
-      <div className="w-full flex h-screen ">
+      <div className="w-full flex h-screen bg-[]">
         <div
-          className={`w-[50%] lg:block hidden h-full bg-gray-100 bg-bottom `}
+          className={`w-[50%] lg:block hidden h-full bg-bottom bg-[#445569]`}
           style={{ backgroundImage: `url(${doodle})` }}
         >
-          <div className="w-full h-[35vh] text-[55px] font-bold flex-col bg-[#f3f4f6] bg-opacity-80 flex items-center text-center  justify-center ">
+          <div className="w-full h-[35vh] text-[55px] font-bold flex-col bg-opacity-80 flex items-center text-center  justify-center text-white bg-[#445569]">
             Try GrowGrade now
-            <div className="text-[14px] text-gray-500 text-center  ">
+            <div className="text-[14px] text-white text-center  ">
               Get a chance to explore the product to its fullest before <br />
               choosing your ideal plan
             </div>
           </div>
 
-          <div className="w-full h-[calc(100vh-35vh)] flex justify-center items- ">
-            <img src={workers} className="w-[80%] object-contain  " alt="" />
+          <div className="w-full h-[calc(100vh-35vh)] flex justify-center  ">
+            <img src={workers} className="w-[80%] object-cover  " alt="" />
           </div>
         </div>
 
@@ -66,13 +65,17 @@ export const Register = () => {
               </div>
               <div className="text-[14px] text-gray-500 ">
                 Already have an account?{" "}
-                <span className="text-orange-400">Sign in</span>{" "}
+                <span className="text-[#414c51]">
+                  <a href="/login" className="hover:underline font-[700]">
+                    Sign in
+                  </a>
+                </span>{" "}
               </div>
             </div>
 
             <form className="w-full mt-10 " onSubmit={onHandleSubmit}>
               <div className="mt-5">
-                <div className="text-[19px] text-[#1965f2] font-bold mb-1 ">
+                <div className="text-[19px] text-[#5B5B5B] font-bold mb-1 ">
                   School Name
                 </div>
                 <input
@@ -87,7 +90,7 @@ export const Register = () => {
               </div>
 
               <div className="mt-5">
-                <div className="text-[19px] text-[#27316f] font-bold mb-1 ">
+                <div className="text-[19px] text-[#5B5B5B] font-bold mb-1 ">
                   Email
                 </div>
                 <input
@@ -102,12 +105,12 @@ export const Register = () => {
               </div>
 
               <div className="mt-5">
-                <div className="text-[19px] text-[#f75d72] font-bold mb-1 ">
+                <div className="text-[19px] text-[#5B5B5B] font-bold mb-1 ">
                   Password
                 </div>
                 <input
                   {...register("password")}
-                  type="text"
+                  type="password"
                   className="pl-4 bg-gray-200 h-10 flex w-full outline-none rounded-md "
                   placeholder="Please enter a secure password here"
                 />
@@ -118,7 +121,7 @@ export const Register = () => {
 
               <button
                 type="submit"
-                className="w-full  py-2 mt-10 text-[25px] font-bold rounded-lg text-[#27316f] bg-gradient-to-r from-[#07cddd] to-[#51e6ac]"
+                className="w-full  py-2 mt-10 text-[20px] font-bold rounded-lg text-[#fff] bg-gradient-to-r from-[#445569] to-[#445569]"
               >
                 Sign up
               </button>

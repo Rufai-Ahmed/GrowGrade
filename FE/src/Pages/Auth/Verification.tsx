@@ -1,8 +1,5 @@
-import { useForm } from "react-hook-form";
 import pix from "../../Assets/logo.png";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { verifySchoolAccount } from "../../API/authApi";
 import { useNavigate } from "react-router-dom";
 
@@ -45,7 +42,7 @@ export const Verification = () => {
               <button
                 className=" h-[60px] w-[95%] border border-white hover:bg-gray-700 transition-all duration-300 mt-10  bg-[#595e60] rounded-xl text-white font-semibold"
                 onClick={() => {
-                  verifySchoolAccount({ token: state }).then((res) => {
+                  verifySchoolAccount({ token: state }).then(() => {
                     navigate("/login");
                   });
                 }}
