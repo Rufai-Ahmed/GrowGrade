@@ -5,7 +5,7 @@ import {
   LuMenu,
   LuSettings,
 } from "react-icons/lu";
-import logo from "../../Assets/logo.png";
+import logo from "../../Assets/logo2.png";
 import {
   Md10K,
   MdCancel,
