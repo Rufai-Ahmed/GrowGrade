@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Layout } from "../components/Layout";
 import { Register } from "../Pages/Auth/Register";
 import { Login } from "../Pages/Auth/Login";
 import { Notification } from "../Pages/Auth/Notification";
@@ -13,7 +12,7 @@ import Holder from "../Heropage/Holder";
 export const Router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: <Holder />,
   },
   {
     path: "/register",
@@ -30,10 +29,6 @@ export const Router = createBrowserRouter([
   {
     path: "/notify",
     element: <Notification />,
-  },
-  {
-    path: "/hero",
-    element: <Holder />,
   },
   {
     path: "/dashboard",
