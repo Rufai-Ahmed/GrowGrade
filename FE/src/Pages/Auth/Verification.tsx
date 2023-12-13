@@ -1,54 +1,39 @@
-import pix from "../../Assets/logo.png";
-import { useState } from "react";
-import { verifySchoolAccount } from "../../API/authApi";
-import { useNavigate } from "react-router-dom";
+import pix from "../../Assets/email logo.png";
 
-export const Verification = () => {
-  const [state, setState] = useState("");
-  const navigate = useNavigate();
-
+const Verification = () => {
   return (
-    <div>
-      <div>
-        <div className=" h-[100vh] w-[full] flex items-center justify-center bg-white ">
-          <div className=" h-[470px] w-[650px] flex justify-center bg-[#595e60] p-5 ">
-            <div className=" h-[100%] w-[90%]   text-center ">
-              <img
-                src={pix}
-                className=" h-[40px] border-[white] border bg-white rounded-lg "
-              />
-              <h1 className=" text-[40px] font-semibold text-white mb-5">
-                {" "}
-                Token Verification
-              </h1>
-              <div className=" bg-slate-50  text-blue-600 ">
-                Please input the that has been sent to your email -
-                <span className=" font-bold te decoration-blue-900">
-                  {"doveyjemix@gmail.com"}
-                </span>
+    <div className="w-full h-[100vh] bg-blue-400">
+      <div className="flex items-center justify-around pt-[100px]">
+        <div className="w-[35%] h-[550px] bg-white flex items-center justify-center rounded-[20px]">
+          <div className="flex flex-col gap-4 justify-center items-center">
+            <div className="h-[150px] w-[150px]">
+              <img src={pix} />
+            </div>
+            <div className="font-bold text-[20px]">Verify Your Email</div>
+            <div className="">
+              Please Enter the 4 digit sent <br /> to yourname@gmail.com
+            </div>
+            <div className="flex">
+              <div className="w-[60px] h-[40px] border-2 flex items-center justify-center">
+                3
               </div>
-              <div className=" h-[100px] w-[100%]  mt-5  flex  justify-between">
-                <input
-                  value={state}
-                  onChange={(e) => {
-                    setState(e.target.value);
-                  }}
-                  type="text"
-                  placeholder=""
-                  className=" h-[50%]  w-[100%] border flex outline-none  text-center text-[23px]"
-                />
+              <div className="w-[60px] h-[40px] border-2 flex items-center justify-center">
+                7
               </div>
+              <div className="w-[60px] h-[40px] border-2 flex items-center justify-center">
+                3
+              </div>
+              <div className="w-[60px] h-[40px] border-2 flex items-center justify-center">
+                9
+              </div>
+            </div>
 
-              <button
-                className=" h-[60px] w-[95%] border border-white hover:bg-gray-700 transition-all duration-300 mt-10  bg-[#595e60] rounded-xl text-white font-semibold"
-                onClick={() => {
-                  verifySchoolAccount({ token: state }).then(() => {
-                    navigate("/login");
-                  });
-                }}
-              >
-                Submit
-              </button>
+            <div className="text-[blue] cursor-pointer">Resend Code</div>
+            <div className="w-[240px] h-[55px] rounded-[5px] bg-blue-600 flex items-center justify-center text-[white] cursor-pointer">
+              Continue
+            </div>
+            <div className="text-decoration: underline text-[blue] cursor-pointer">
+              change your email
             </div>
           </div>
         </div>
@@ -56,3 +41,5 @@ export const Verification = () => {
     </div>
   );
 };
+
+export default Verification;

@@ -2,12 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "../components/Layout";
 import { Register } from "../Pages/Auth/Register";
 import { Login } from "../Pages/Auth/Login";
-import { Verification } from "../Pages/Auth/Verification";
 import { Notification } from "../Pages/Auth/Notification";
 import { Admin } from "../Pages/Dashboards/Homes/Admin";
 import { Staff } from "../Pages/Dashboards/Homes/Staff";
 import { Student } from "../Pages/Dashboards/Homes/Student";
 import { DLayout } from "../Pages/Dashboards/DLayout";
+import Verification from "../Pages/Auth/Verification";
 
 export const Router = createBrowserRouter([
   {
