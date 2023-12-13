@@ -84,7 +84,7 @@ export const Register = () => {
                   className="pl-4 bg-gray-200 h-10 flex w-full outline-none rounded-md "
                   placeholder="Please input your school's name here"
                 />
-                <div className="w-full text-[15px] text-[#1965f2]  ">
+                <div className="w-full text-[15px] text-[#EF8192]  ">
                   {errors.schoolName?.message}
                 </div>
               </div>
@@ -99,7 +99,7 @@ export const Register = () => {
                   className="pl-4 bg-gray-200 h-10 flex w-full outline-none rounded-md "
                   placeholder="Please input your school's email here"
                 />
-                <div className="w-full text-[15px] text-[#27316f]  ">
+                <div className="w-full text-[15px] text-[#EF8192]  ">
                   {errors.email?.message}
                 </div>
               </div>
@@ -114,7 +114,7 @@ export const Register = () => {
                   className="pl-4 bg-gray-200 h-10 flex w-full outline-none rounded-md "
                   placeholder="Please enter a secure password here"
                 />
-                <div className="w-full text-[15px] text-[#f75d72]  ">
+                <div className="w-full text-[15px] text-[#EF8192]  ">
                   {errors.password?.message}
                 </div>
               </div>
