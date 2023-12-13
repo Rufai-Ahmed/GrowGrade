@@ -1,5 +1,4 @@
 import { Application, Request, Response } from "express";
-import router from "./router/schoolRouter";
 
 export const mainApp = (app: Application) => {
   try {
@@ -10,11 +9,24 @@ export const mainApp = (app: Application) => {
         res.status(200).json({
           message: "success",
         });
+        app.all("*", (req: Request, res: Response, next: NextFunction) => {
+          next(
+            new mainError({
+              name: "Route error",
+              message:
+                "This endpoint you entered ${req.originalUrl} is not support",
+              status: HTTP.BAD,
+              success: false,
+            })
+          );
+        });
       } catch (error) {
         res.status(404).json({
           message: "failed",
         });
       }
     });
-  } catch (error) {}
+  } catch (error) {
+    app.use(handleError);
+  }
 };
