@@ -6,73 +6,113 @@ import path from "path";
 config();
 
 const auth = new google.auth.OAuth2(
-  process.env.GOOGLE_ID,
-  process.env.GOOGLE_SECRET,
-  process.env.GOOGLE_REDIRECT
+	process.env.GOOGLE_ID,
+	process.env.GOOGLE_SECRET,
+	process.env.GOOGLE_REDIRECT
 );
 
 auth.setCredentials({ refresh_token: process.env.GOOGLE_REFRESH });
 
 export const sendToken = async (user: any) => {
-  try {
-    const accessToken: any = (await auth.getAccessToken()).token;
+	try {
+		const accessToken: any = (await auth.getAccessToken()).token;
 
-    const transport = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: "abbeyrufai234@gmail.com",
-        type: "OAuth2",
-        clientId: process.env.GOOGLE_ID,
-        clientSecret: process.env.GOOGLE_SECRET,
-        refreshToken: process.env.GOOGLE_REFRESH,
-        accessToken,
-      },
-    });
+		const transport = nodemailer.createTransport({
+			service: "gmail",
+			auth: {
+				user: "abbeyrufai234@gmail.com",
+				type: "OAuth2",
+				clientId: process.env.GOOGLE_ID,
+				clientSecret: process.env.GOOGLE_SECRET,
+				refreshToken: process.env.GOOGLE_REFRESH,
+				accessToken,
+			},
+		});
 
-    const filePath = path.join(__dirname, "../views/index.ejs");
+		const filePath = path.join(__dirname, "../views/index.ejs");
 
-    const data = {
+		const data = {
+			token: user.token,
+			schoolName: user.schoolName,
+		};
 
-      token: user.token,
-      schoolName: user.schoolName
-    };
+		const html = await ejs.renderFile(filePath, { data });
+		const Mailer = {
+			from: "GrowGrade <abbeyrufai234@gmail.com>",
+			to: user.email,
+			subject: "Account verification",
+			html,
+		};
 
-    const html = await ejs.renderFile(filePath, { data });
-    const Mailer = {
-      from: "GrowGrade <abbeyrufai234@gmail.com>",
-      to: user.email,
-      subject: "Account verification",
-      html,
+		await transport.sendMail(Mailer).then(() => {
+			console.log("send");
+		});
 
-    }
+		//   name: user.schoolName,
+		//   token: user.token,
+		//   url: `http://localhost:5173/verify/${user._id}`,
+		// };
 
-    await transport.sendMail(Mailer).then(() => {
-  
-        console.log("send")
-  
-    })
+		// const html = await ejs.renderFile(filePath, { data });
 
-      name: user.schoolName,
-      token: user.token,
-      url: `http://localhost:5173/verify/${user._id}`,
-    };
+		//   name: user.schoolName,
+		//   token: user.token,
+		//   url: `http://localhost:5173/verify/${user._id}`,
+		// };
 
-    const html = await ejs.renderFile(filePath, { data });
+		// const html = await ejs.renderFile(filePath, { data });
 
-      name: user.schoolName,
-      token: user.token,
-      url: `http://localhost:5173/verify/${user._id}`,
-    };
+		// await transport.sendMail({
+		//   to: user.email,
+		//   from: "GrowGrade <abbeyrufai234@gmail.com>",
+		//   subject: "Account Verification",
+		//   html,
+		// });
+	} catch (error) {
+		console.log(error);
+	}
+};
 
-    const html = await ejs.renderFile(filePath, { data });
+export const sendRResetPasswordEmail = async (user: any) => {
+	try {
+		const accessToken: any = (await auth.getAccessToken()).token;
 
-    await transport.sendMail({
-      to: user.email,
-      from: "GrowGrade <abbeyrufai234@gmail.com>",
-      subject: "Account Verification",
-      html,
-    });
-  } catch (error) {
-    console.log(error);
-  }
+		const transporter = nodemailer.createTransport({
+			service: "gemail",
+			auth: {
+				type: "OAUTH2",
+				user: "abbeyrufai234@gmail.com",
+				clientSecret: process.env.GOOGLE_SECRET,
+				clientId: process.env.GOOGLE_ID,
+				refreshToken: process.env.GOOGLE_REFRESH,
+				accessToken,
+			},
+		});
+
+		const getFile = path.join(
+			__dirname,
+			"../views/verifyPassword.ejs"
+		);
+
+		const data = {
+			token: user.token,
+			email: user.email,
+			url: `${URL}/user-verify/${user._id}`,
+		};
+
+		const html = await ejs.renderFile(getFile, { data });
+
+		const mailer = {
+			from: "CodeLab🔥🔥 <abbeyrufai234@gmail.com>",
+			to: user.email,
+			subject: "Password Reset",
+			html,
+		};
+
+		await transporter.sendMail(mailer).then(() => {
+			console.log("send");
+		});
+	} catch (error) {
+		return error;
+	}
 };
