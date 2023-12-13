@@ -24,7 +24,7 @@ export const Register = () => {
     resolver: yupResolver(schema),
   });
 
-  const onHandleSubmit = handleSubmit((data) => {
+  const onHandleSubmit = handleSubmit((data : any) => {
     console.log(data);
 
     createSchoolAccount(data).then((res) => {
