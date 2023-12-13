@@ -9,14 +9,14 @@ import Student from "./Student";
 
 const Holder = () => {
   return (
-    <div className="flex flex-col">
+    <div>
       <Header />
       <Hero />
       {/* <Imageslide /> */}
       <Features />
       <Fee />
-      {/* <Student /> */}
-      {/* <Admission /> */}
+      <Student />
+      <Admission />
       <Footer />
     </div>
   );
