@@ -122,6 +122,7 @@ const resetUserPassword = (req, res) => __awaiter(void 0, void 0, void 0, functi
             const checkUser = yield schoolModel_1.default.findByIdAndUpdate(getUser._id, { token }, { new: true });
             (0, email_1.sendResetPasswordEmail)(checkUser);
             return res.status(200 /* HTTP.OK */).json({
+                id: getUser._id,
                 message: "An email has been sent to confirm your request",
             });
         }

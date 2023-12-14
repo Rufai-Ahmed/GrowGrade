@@ -131,6 +131,7 @@ export const resetUserPassword = async (req: Request, res: Response) => {
 
       sendResetPasswordEmail(checkUser);
       return res.status(HTTP.OK).json({
+        id: getUser._id,
         message: "An email has been sent to confirm your request",
       });
     } else {
