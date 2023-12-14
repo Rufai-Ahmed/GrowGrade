@@ -120,7 +120,7 @@ export const resetUserPassword = async (req: Request, res: Response) => {
 
     const getUser = await schoolModel.findOne({ email });
 
-    if (getUser) {
+    if (getUser && getUser.verify) {
       const token = crypto.randomBytes(16).toString("hex");
 
       const checkUser = await schoolModel.findByIdAndUpdate(

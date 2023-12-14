@@ -164,7 +164,7 @@ const resetUserPassword = (req, res) =>
     try {
       const { email } = req.body;
       const getUser = yield schoolModel_1.default.findOne({ email });
-      if (getUser) {
+      if (getUser && getUser.verify) {
         const token = crypto_1.default.randomBytes(16).toString("hex");
         const checkUser = yield schoolModel_1.default.findByIdAndUpdate(
           getUser._id,
