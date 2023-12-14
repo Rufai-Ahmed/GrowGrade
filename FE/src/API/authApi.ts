@@ -4,7 +4,7 @@ const url = "https://growgrade.onrender.com/api/v1";
 
 export const createSchoolAccount = async (data: any) => {
   try {
-    return await axios.post(`${url}/createAccount`, data);
+    return await axios.post(`${url}/register-account`, data);
   } catch (error) {
     console.log(error);
   }
@@ -12,7 +12,7 @@ export const createSchoolAccount = async (data: any) => {
 
 export const verifySchoolAccount = async (data: any) => {
   try {
-    return await axios.patch(`${url}/verifyAccount`, data);
+    return await axios.patch(`${url}/verify-account`, { token: data });
   } catch (error) {
     console.log(error);
   }
@@ -20,7 +20,31 @@ export const verifySchoolAccount = async (data: any) => {
 
 export const loginSchoolAccount = async (data: any) => {
   try {
-    return await axios.post(`${url}/verifyAccount`, data);
+    return await axios.post(`${url}/login-account`, data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const resetSchoolPassword = async (data: any) => {
+  try {
+    return await axios.patch(`${url}/reset-password`, data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const changeSchoolPassword = async (userID: any, data: any) => {
+  try {
+    return await axios.patch(`${url}/change-password/${userID}`, data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getUrl = async () => {
+  try {
+    return await axios.get(`https://growgrade.onrender.com/`);
   } catch (error) {
     console.log(error);
   }
