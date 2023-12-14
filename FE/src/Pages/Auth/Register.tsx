@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createSchoolAccount } from "../../API/authApi";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export const Register = () => {
   const schema = yup.object({
@@ -15,6 +16,7 @@ export const Register = () => {
   });
 
   const navigate = useNavigate();
+  const [state, setState] = useState(false);
 
   const {
     formState: { errors },
@@ -24,12 +26,18 @@ export const Register = () => {
     resolver: yupResolver(schema),
   });
 
-  const onHandleSubmit = handleSubmit((data : any) => {
+  const onHandleSubmit = handleSubmit((data: any) => {
     console.log(data);
 
+    setState(true);
     createSchoolAccount(data).then((res) => {
       console.log(res);
-      navigate("/notify");
+      if (!res) {
+        setState(false);
+        navigate("/register");
+      } else {
+        navigate("/notify");
+      }
     });
   });
 
@@ -40,7 +48,7 @@ export const Register = () => {
           className={`w-[50%] lg:block hidden h-full bg-bottom bg-[#445569]`}
           style={{ backgroundImage: `url(${doodle})` }}
         >
-          <div className="w-full h-[35vh] text-[55px] font-bold flex-col bg-opacity-80 flex items-center text-center  justify-center text-white bg-[#445569]">
+          <div className="w-full h-[30vh] text-[55px] font-bold flex-col bg-opacity-80 flex items-center text-center  justify-center text-white bg-[#445569]">
             Try GrowGrade now
             <div className="text-[14px] text-white text-center  ">
               Get a chance to explore the product to its fullest before <br />
@@ -49,7 +57,7 @@ export const Register = () => {
           </div>
 
           <div className="w-full h-[calc(100vh-35vh)] flex justify-center  ">
-            <img src={workers} className="w-[80%] object-cover  " alt="" />
+            <img src={workers} className="w-[80%] object-contain  " alt="" />
           </div>
         </div>
 
@@ -121,9 +129,16 @@ export const Register = () => {
 
               <button
                 type="submit"
-                className="w-full  py-2 mt-10 text-[20px] font-bold rounded-lg text-[#fff] bg-gradient-to-r from-[#445569] to-[#445569]"
+                className="w-full flex justify-center gap-5 py-2 mt-10 text-[20px] font-bold rounded-lg text-[#fff] bg-gradient-to-r from-[#445569] to-[#445569]"
               >
-                Sign up
+                {state ? (
+                  <>
+                    <div className="border-gray-300 h-[30px] w-[30px] animate-spin rounded-full border-8 border-t-[#445569]" />{" "}
+                    Processing...
+                  </>
+                ) : (
+                  "Register"
+                )}
               </button>
             </form>
           </div>

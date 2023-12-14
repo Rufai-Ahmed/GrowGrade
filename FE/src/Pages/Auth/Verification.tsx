@@ -1,7 +1,6 @@
 import { useState } from "react";
 import pix from "../../Assets/email logo.png";
 import VerifyCode from "./VerifyCode";
-import { FadeLoader } from "react-spinners";
 import { useSelector } from "react-redux";
 
 const Verification = () => {

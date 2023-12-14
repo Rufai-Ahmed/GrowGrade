@@ -4,7 +4,7 @@ import logo from "../../Assets/logo.png";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { createSchoolAccount } from "../../API/authApi";
+import { createSchoolAccount, loginSchoolAccount } from "../../API/authApi";
 import { useNavigate } from "react-router-dom";
 import {} from "react-spinner";
 import { useState } from "react";
@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 
 export const Login = () => {
   const schema = yup.object({
-    schoolName: yup.string().required(),
     email: yup.string().required(),
     password: yup.string().min(6).required(),
   });
@@ -32,10 +31,23 @@ export const Login = () => {
   const onHandleSubmit = handleSubmit((data: any) => {
     console.log(data);
 
-    createSchoolAccount(data).then((res) => {
-      console.log(res);
-      navigate("/notify");
-    });
+    setState(true);
+
+    loginSchoolAccount(data)
+      .then((res) => {
+        console.log(res);
+        if (!res) {
+          navigate("/login");
+          setState(false);
+        } else {
+          navigate("/dashboard");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+
+        navigate("/login");
+      });
   });
 
   return (
@@ -110,11 +122,17 @@ export const Login = () => {
               </div>
 
               <button
-                onClick={() => {}}
                 type="submit"
-                className="w-full  py-2 mt-10 text-[20px] font-bold rounded-lg text-[#fff] bg-gradient-to-r from-[#445569] to-[#445569]"
+                className="w-full flex justify-center gap-5 py-2 mt-10 text-[20px] font-bold rounded-lg text-[#fff] bg-gradient-to-r from-[#445569] to-[#445569]"
               >
-                Login
+                {state ? (
+                  <>
+                    <div className="border-gray-300 h-[30px] w-[30px] animate-spin rounded-full border-8 border-t-[#445569]" />{" "}
+                    Processing...
+                  </>
+                ) : (
+                  "Login"
+                )}
               </button>
 
               <Link to="/forgot-password">

@@ -12,7 +12,7 @@ export const createSchoolAccount = async (data: any) => {
 
 export const verifySchoolAccount = async (data: any) => {
   try {
-    return await axios.patch(`${url}/verify-account`, data);
+    return await axios.patch(`${url}/verify-account`, { token: data });
   } catch (error) {
     console.log(error);
   }
