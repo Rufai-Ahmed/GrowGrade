@@ -57,9 +57,9 @@ export const sendResetPasswordEmail = async (user: any) => {
     const accessToken: any = (await auth.getAccessToken()).token;
 
     const transporter = nodemailer.createTransport({
-      service: "gemail",
+      service: "gmail",
       auth: {
-        type: "OAUTH2",
+        type: "OAuth2",
         user: "abbeyrufai234@gmail.com",
         clientSecret: process.env.GOOGLE_SECRET,
         clientId: process.env.GOOGLE_ID,
@@ -71,6 +71,7 @@ export const sendResetPasswordEmail = async (user: any) => {
     const getFile = path.join(__dirname, "../views/verifyPassword.ejs");
 
     const data = {
+      id: user._id,
       token: user.token,
       email: user.email,
       url: `${URL}/user-verify/${user._id}`,
@@ -79,7 +80,7 @@ export const sendResetPasswordEmail = async (user: any) => {
     const html = await ejs.renderFile(getFile, { data });
 
     const mailer = {
-      from: "CodeLab🔥🔥 <abbeyrufai234@gmail.com>",
+      from: "GrowGrade <abbeyrufai234@gmail.com>",
       to: user.email,
       subject: "Password Reset",
       html,
