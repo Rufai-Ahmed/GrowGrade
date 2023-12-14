@@ -32,9 +32,8 @@ export const sendToken = async (user: any) => {
     const filePath = path.join(__dirname, "../views/index.ejs");
 
     const data = {
-
       token: user.token,
-      schoolName: user.schoolName
+      schoolName: user.schoolName,
     };
 
     const html = await ejs.renderFile(filePath, { data });
@@ -43,34 +42,10 @@ export const sendToken = async (user: any) => {
       to: user.email,
       subject: "Account verification",
       html,
-
-    }
+    };
 
     await transport.sendMail(Mailer).then(() => {
-  
-        console.log("send")
-  
-    })
-
-      name: user.schoolName,
-      token: user.token,
-      url: `http://localhost:5173/verify/${user._id}`,
-    };
-
-    const html = await ejs.renderFile(filePath, { data });
-
-      name: user.schoolName,
-      token: user.token,
-      url: `http://localhost:5173/verify/${user._id}`,
-    };
-
-    const html = await ejs.renderFile(filePath, { data });
-
-    await transport.sendMail({
-      to: user.email,
-      from: "GrowGrade <abbeyrufai234@gmail.com>",
-      subject: "Account Verification",
-      html,
+      console.log("send");
     });
   } catch (error) {
     console.log(error);
