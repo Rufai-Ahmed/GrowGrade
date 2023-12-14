@@ -8,30 +8,32 @@ const Features = () => {
 
             <div className='w-full h-[700px] flex items-center justify-center'>
 
-                <div className='h-[100%] w-[70%]
-                flex items-center justify-between flex-row flex-wrap
+                <div className='h-[100%] w-[80%] sm:w-[80%] gap-[20px]
+                flex items-center justify-between flex-wrap  
+                
+                sm:gap-[px] md:flex-wrap md:w-[90%] lg:w-[70%] 
                 '>
 
-                    <div className='w-[45%] h-[45%] bg-orange-100 rounded-2xl
-                    flex  justify-between p-[30px]                '>
+                    <div className='w-[100%] h-[45%] bg-orange-100 rounded-2xl
+                    flex  justify-between p-[30px]  sm:w-[45%]      md:w-[45%] '>
 
                         <div>
                             <p className="">Schools</p>
                             <div className="pt-[20px]">
-                                Improve efficiency by automating all
+                                Improve effici-ency by automating all
                                 the processes in your school with the most
                                 powerful
                                 school management platform
                             </div>
                         </div>
 
-                        <img src={sch} className="w-[40%] h-[100%] " />
+                        <img src={sch} className="w-[45%] h-[100%] " />
 
 
                     </div>
-                    <div className='w-[45%] h-[45%] bg-blue-100 rounded-2xl
+                    <div className='w-[100%] h-[45%] bg-blue-100 rounded-2xl
                     
-                    flex  justify-between p-[30px]  '>
+                    flex  justify-between p-[30px]  sm:w-[45%]   md:w-[45%] '>
                         <div>
                             <p className="">Teachers</p>
                             <div className="pt-[20px]">
@@ -41,11 +43,11 @@ const Features = () => {
                             </div>
                         </div>
 
-                        <img src={teach} className="w-[40%] h-[100%] " />
+                        <img src={teach} className="w-[45%] h-[100%] " />
 
                     </div>
-                    <div className='w-[45%] h-[45%] bg-gray-200
-                      flex  justify-between p-[30px]  rounded-2xl
+                    <div className='w-[100%] h-[45%] bg-gray-200
+                      flex  justify-between p-[30px]  rounded-2xl sm:w-[45%]    md:w-[45%]
                     '>
                         <div>
                             <p className="">Students</p>
@@ -57,11 +59,11 @@ const Features = () => {
                             </div>
                         </div>
 
-                        <img src={stu} className="w-[40%] h-[100%] " />
+                        <img src={stu} className="w-[45%] h-[100%] " />
 
                     </div>
-                    <div className='w-[45%] h-[45%] bg-pink-100
-                      flex  justify-between p-[30px]  rounded-2xl
+                    <div className='w-[100%] h-[45%] bg-pink-100
+                      flex  justify-between p-[30px]  rounded-2xl sm:w-[45%] md:w-[45%] 
                     '>
                         <div>
                             <p className="">Parents</p>
@@ -71,7 +73,7 @@ const Features = () => {
                             </div>
                         </div>
 
-                        <img src={par} className="w-[40%] h-[100%] " />
+                        <img src={par} className="w-[45%] h-[100%] " />
                     </div>
 
 
