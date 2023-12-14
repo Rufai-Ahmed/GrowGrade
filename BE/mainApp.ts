@@ -13,6 +13,7 @@ export const mainApp = (app: Application) => {
         res.status(200).json({
           message: "success",
         });
+
         app.all("*", (req: Request, res: Response, next: NextFunction) => {
           next(
             new mainError({

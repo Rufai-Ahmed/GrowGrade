@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.signInSchool = exports.verifySchool = exports.createSchool = void 0;
+exports.getCookieUser = exports.logOutUser = exports.getUseInfo = exports.getAllUser = exports.getAllUsers = exports.changeUserPassword = exports.resetUserPassword = exports.signInSchool = exports.verifySchool = exports.createSchool = void 0;
 const enums_1 = require("../utils/enums");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const crypto_1 = __importDefault(require("crypto"));
@@ -113,3 +113,153 @@ const signInSchool = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.signInSchool = signInSchool;
+const resetUserPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { email } = req.body;
+        const getUser = yield schoolModel_1.default.findOne({ email });
+        if (getUser) {
+            const token = crypto_1.default.randomBytes(16).toString("hex");
+            const checkUser = yield schoolModel_1.default.findByIdAndUpdate(getUser._id, { token }, { new: true });
+            (0, email_1.sendResetPasswordEmail)(checkUser);
+            return res.status(200 /* HTTP.OK */).json({
+                message: "An email has been sent to confirm your request",
+            });
+        }
+        else {
+            return res.status(404 /* HTTP.BAD */).json({
+                message: "Sorry!! Email doesn't exist.",
+            });
+        }
+    }
+    catch (error) {
+        return res.status(404 /* HTTP.BAD */).json({
+            message: "Sorry!! User not created. There was an error with this request.",
+        });
+    }
+});
+exports.resetUserPassword = resetUserPassword;
+const changeUserPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { password } = req.body;
+        const { userID } = req.params;
+        const getUser = yield schoolModel_1.default.findOne({ userID });
+        const salt = yield bcrypt_1.default.genSalt(10);
+        const hashedPassword = yield bcrypt_1.default.hash(password, salt);
+        if (getUser) {
+            if (getUser.token !== "" && getUser.verify) {
+                yield schoolModel_1.default.findByIdAndUpdate(getUser._id, {
+                    password: hashedPassword,
+                    token: "",
+                }, { new: true });
+                return res.status(200 /* HTTP.OK */).json({
+                    message: "You password has been changed",
+                });
+            }
+            else {
+                return res.status(404 /* HTTP.BAD */).json({
+                    message: "Please go and verify your account",
+                });
+            }
+        }
+        else {
+            return res.status(404 /* HTTP.BAD */).json({
+                message: "No user found",
+            });
+        }
+    }
+    catch (error) {
+        return res.status(404 /* HTTP.BAD */).json({
+            message: "Error creating user: ",
+        });
+    }
+});
+exports.changeUserPassword = changeUserPassword;
+const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const getUser = yield schoolModel_1.default.find();
+        const data = req.data;
+        if (data.status === "admin") {
+            return res.status(200 /* HTTP.OK */).json({
+                message: " user found",
+                data: getUser,
+            });
+        }
+        else {
+            return res.status(404 /* HTTP.BAD */).json({
+                message: "You don't have the pass for this",
+            });
+        }
+    }
+    catch (error) {
+        return res.status(404 /* HTTP.BAD */).json({
+            message: "Error creating user: ",
+        });
+    }
+});
+exports.getAllUsers = getAllUsers;
+const getAllUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const getUser = yield schoolModel_1.default.find();
+        return res.status(200 /* HTTP.OK */).json({
+            message: "user found",
+            data: getUser,
+        });
+    }
+    catch (error) {
+        return res.status(404 /* HTTP.BAD */).json({
+            message: "Error creating user: ",
+        });
+    }
+});
+exports.getAllUser = getAllUser;
+const getUseInfo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { userID } = req.params;
+        const getUser = yield schoolModel_1.default.find(userID);
+        return res.status(200 /* HTTP.OK */).json({
+            message: "user found",
+            data: getUser,
+        });
+    }
+    catch (error) {
+        return res.status(404 /* HTTP.BAD */).json({
+            message: "Error creating user: ",
+        });
+    }
+});
+exports.getUseInfo = getUseInfo;
+const logOutUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        res.cookie("peter", {
+            maxAge: 0,
+            secure: false,
+            sameSite: "lax",
+        });
+        req.session.destroy();
+        return res.status(200 /* HTTP.OK */).json({
+            message: "user has een logged out",
+        });
+    }
+    catch (error) {
+        return res.status(404 /* HTTP.BAD */).json({
+            message: "Error creating user: ",
+        });
+    }
+});
+exports.logOutUser = logOutUser;
+const getCookieUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const data = req.session.data;
+        const read = req.session.cookie;
+        return res.status(200 /* HTTP.OK */).json({
+            message: "user cookie data",
+            data: { data, read },
+        });
+    }
+    catch (error) {
+        return res.status(404 /* HTTP.BAD */).json({
+            message: "Error creating user: ",
+        });
+    }
+});
+exports.getCookieUser = getCookieUser;

@@ -7,7 +7,7 @@ const url: string | undefined = process.env.DATABASE_URL;
 export const mainConnection = () => {
   try {
     connect(url!).then(() => {
-      console.log("db conected");
+      console.log("db connected");
     });
   } catch (error) {
     console.log(error);

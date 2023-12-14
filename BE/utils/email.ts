@@ -47,33 +47,12 @@ export const sendToken = async (user: any) => {
     await transport.sendMail(Mailer).then(() => {
       console.log("send");
     });
-
-    //   name: user.schoolName,
-    //   token: user.token,
-    //   url: `http://localhost:5173/verify/${user._id}`,
-    // };
-
-    // const html = await ejs.renderFile(filePath, { data });
-
-    //   name: user.schoolName,
-    //   token: user.token,
-    //   url: `http://localhost:5173/verify/${user._id}`,
-    // };
-
-    // const html = await ejs.renderFile(filePath, { data });
-
-    // await transport.sendMail({
-    //   to: user.email,
-    //   from: "GrowGrade <abbeyrufai234@gmail.com>",
-    //   subject: "Account Verification",
-    //   html,
-    // });
   } catch (error) {
     console.log(error);
   }
 };
 
-export const sendRResetPasswordEmail = async (user: any) => {
+export const sendResetPasswordEmail = async (user: any) => {
   try {
     const accessToken: any = (await auth.getAccessToken()).token;
 
