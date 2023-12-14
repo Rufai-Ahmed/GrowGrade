@@ -1,10 +1,9 @@
-import React from "react";
 import { useSelector } from "react-redux";
-import { jwtDecode } from "jwt-decode";
+import { Navigate } from "react-router-dom";
+import { FC, PropsWithChildren } from "react";
 
-export const PrivateRouter = () => {
-  const eUsers = useSelector((state: any) => state.user);
+export const PrivateRouter: FC<PropsWithChildren> = ({ children }) => {
+  const user = useSelector((state: any) => state.user);
 
-  const decrypt: any = jwtDecode(eUsers);
-  return <div>{decrypt.status === ""}</div>;
+  return <div>{user ? <div>{children}</div> : <Navigate to="/login" />}</div>;
 };
