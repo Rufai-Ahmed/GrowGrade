@@ -152,7 +152,7 @@ export const changeUserPassword = async (req: Request, res: Response) => {
     const { password } = req.body;
     const { userID } = req.params;
 
-    const getUser = await schoolModel.findOne({ userID });
+    const getUser = await schoolModel.findById(userID);
 
     const salt = await bcrypt.genSalt(10);
 
