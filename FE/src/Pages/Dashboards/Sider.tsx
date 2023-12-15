@@ -17,7 +17,6 @@ import { PiChalkboardTeacher, PiExam, PiStudent } from "react-icons/pi";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggle } from "../../global/reduxState";
-// import { PiStudent} from "react-icons/pi";
 
 export const Sider = () => {
   const Toggle = useSelector((state: any) => state.toggle);

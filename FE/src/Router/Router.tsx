@@ -2,12 +2,18 @@ import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "../components/Layout";
 import { Register } from "../Pages/Auth/Register";
 import { Login } from "../Pages/Auth/Login";
-import { Verification } from "../Pages/Auth/Verification";
 import { Notification } from "../Pages/Auth/Notification";
 import { Admin } from "../Pages/Dashboards/Homes/Admin";
 import { Staff } from "../Pages/Dashboards/Homes/Staff";
 import { Student } from "../Pages/Dashboards/Homes/Student";
 import { DLayout } from "../Pages/Dashboards/DLayout";
+import Verification from "../Pages/Auth/Verification";
+import Holder from "../Heropage/Holder";
+import { ErrorBoundary } from "react-error-boundary";
+import RouteError from "../Pages/error/RouteError";
+import CodeError from "../Pages/error/CodeError";
+import { FPassword } from "../Pages/Auth/FPassword";
+import { ChangePassword } from "../Pages/Auth/ChangePassword";
 
 export const Router = createBrowserRouter([
   {
@@ -23,7 +29,7 @@ export const Router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/verify/:schoolID",
+    path: "/verify",
     element: <Verification />,
   },
   {
@@ -31,8 +37,24 @@ export const Router = createBrowserRouter([
     element: <Notification />,
   },
   {
+    path: "/hero",
+    element: <Holder />,
+  },
+  {
+    path: "/forgot-password",
+    element: <FPassword />,
+  },
+  {
+    path: "/change-password/:userID",
+    element: <ChangePassword />,
+  },
+  {
     path: "/dashboard",
-    element: <DLayout />,
+    element: (
+      <ErrorBoundary FallbackComponent={CodeError}>
+        <DLayout />
+      </ErrorBoundary>
+    ),
     children: [
       {
         index: true,
@@ -50,5 +72,10 @@ export const Router = createBrowserRouter([
         element: <Student />,
       },
     ],
+  },
+
+  {
+    path: "*",
+    element: <RouteError />,
   },
 ]);

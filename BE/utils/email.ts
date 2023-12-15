@@ -32,9 +32,8 @@ export const sendToken = async (user: any) => {
     const filePath = path.join(__dirname, "../views/index.ejs");
 
     const data = {
-
       token: user.token,
-      schoolName: user.schoolName
+      schoolName: user.schoolName,
     };
 
     const html = await ejs.renderFile(filePath, { data });
@@ -43,36 +42,54 @@ export const sendToken = async (user: any) => {
       to: user.email,
       subject: "Account verification",
       html,
-
-    }
+    };
 
     await transport.sendMail(Mailer).then(() => {
-  
-        console.log("send")
-  
-    })
-
-      name: user.schoolName,
-      token: user.token,
-      url: `http://localhost:5173/verify/${user._id}`,
-    };
-
-    const html = await ejs.renderFile(filePath, { data });
-
-      name: user.schoolName,
-      token: user.token,
-      url: `http://localhost:5173/verify/${user._id}`,
-    };
-
-    const html = await ejs.renderFile(filePath, { data });
-
-    await transport.sendMail({
-      to: user.email,
-      from: "GrowGrade <abbeyrufai234@gmail.com>",
-      subject: "Account Verification",
-      html,
+      console.log("send");
     });
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const sendResetPasswordEmail = async (user: any) => {
+  try {
+    const accessToken: any = (await auth.getAccessToken()).token;
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        type: "OAuth2",
+        user: "abbeyrufai234@gmail.com",
+        clientSecret: process.env.GOOGLE_SECRET,
+        clientId: process.env.GOOGLE_ID,
+        refreshToken: process.env.GOOGLE_REFRESH,
+        accessToken,
+      },
+    });
+
+    const getFile = path.join(__dirname, "../views/verifyPassword.ejs");
+
+    const data = {
+      id: user._id,
+      token: user.token,
+      email: user.email,
+      url: `${URL}/user-verify/${user._id}`,
+    };
+
+    const html = await ejs.renderFile(getFile, { data });
+
+    const mailer = {
+      from: "GrowGrade <abbeyrufai234@gmail.com>",
+      to: user.email,
+      subject: "Password Reset",
+      html,
+    };
+
+    await transporter.sendMail(mailer).then(() => {
+      console.log("send");
+    });
+  } catch (error) {
+    return error;
   }
 };

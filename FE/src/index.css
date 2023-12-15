@@ -21,7 +21,7 @@
 
 * {
   margin: 0;
-
+  /* 
   ::-webkit-scrollbar-thumb {
     background-color: #a7a7a8;
     border-radius: 20px;
@@ -29,5 +29,5 @@
   ::-webkit-scrollbar {
     background-color: transparent;
     width: 10px;
-  }
+  } */
 }

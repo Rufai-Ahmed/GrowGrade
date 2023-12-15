@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sendToken = void 0;
+exports.sendResetPasswordEmail = exports.sendToken = void 0;
 const dotenv_1 = require("dotenv");
 const ejs_1 = __importDefault(require("ejs"));
 const googleapis_1 = require("googleapis");
@@ -37,16 +37,18 @@ const sendToken = (user) => __awaiter(void 0, void 0, void 0, function* () {
         });
         const filePath = path_1.default.join(__dirname, "../views/index.ejs");
         const data = {
-            name: user.schoolName,
             token: user.token,
-            url: `http://localhost:5173/verify/${user._id}`,
+            schoolName: user.schoolName,
         };
         const html = yield ejs_1.default.renderFile(filePath, { data });
-        yield transport.sendMail({
-            to: user.email,
+        const Mailer = {
             from: "GrowGrade <abbeyrufai234@gmail.com>",
-            subject: "Account Verification",
+            to: user.email,
+            subject: "Account verification",
             html,
+        };
+        yield transport.sendMail(Mailer).then(() => {
+            console.log("send");
         });
     }
     catch (error) {
@@ -54,3 +56,40 @@ const sendToken = (user) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.sendToken = sendToken;
+const sendResetPasswordEmail = (user) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const accessToken = (yield auth.getAccessToken()).token;
+        const transporter = nodemailer_1.default.createTransport({
+            service: "gmail",
+            auth: {
+                type: "OAuth2",
+                user: "abbeyrufai234@gmail.com",
+                clientSecret: process.env.GOOGLE_SECRET,
+                clientId: process.env.GOOGLE_ID,
+                refreshToken: process.env.GOOGLE_REFRESH,
+                accessToken,
+            },
+        });
+        const getFile = path_1.default.join(__dirname, "../views/verifyPassword.ejs");
+        const data = {
+            id: user._id,
+            token: user.token,
+            email: user.email,
+            url: `${URL}/user-verify/${user._id}`,
+        };
+        const html = yield ejs_1.default.renderFile(getFile, { data });
+        const mailer = {
+            from: "GrowGrade <abbeyrufai234@gmail.com>",
+            to: user.email,
+            subject: "Password Reset",
+            html,
+        };
+        yield transporter.sendMail(mailer).then(() => {
+            console.log("send");
+        });
+    }
+    catch (error) {
+        return error;
+    }
+});
+exports.sendResetPasswordEmail = sendResetPasswordEmail;

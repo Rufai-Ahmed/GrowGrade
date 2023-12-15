@@ -1,8 +1,4 @@
-import { Application, NextFunction, Request, Response } from "express";
-import { HTTP } from "./utils/enums";
-import { mainError } from "./error/mainError";
-import router from "./router/schoolRouter";
-import { handleError } from "./error/handleError";
+import { Application, Request, Response } from "express";
 
 export const mainApp = (app: Application) => {
   try {
@@ -13,6 +9,7 @@ export const mainApp = (app: Application) => {
         res.status(200).json({
           message: "success",
         });
+
         app.all("*", (req: Request, res: Response, next: NextFunction) => {
           next(
             new mainError({

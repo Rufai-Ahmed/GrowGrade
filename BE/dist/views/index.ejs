@@ -83,6 +83,23 @@
       p,
       ul,
       ol,
+      blockquote,
+      h1,
+      h2,
+      h3,
+      span,
+      .purchase_item {
+        color: #fff !important;
+      }
+
+      .attributes_content,
+      .discount {
+        background-color: #222 !important;
+      }
+
+      .email-masthead_name {
+        text-shadow: none !important;
+      }
       blockquote {
         margin: 0.4em 0 1.1875em;
         font-size: 16px;
@@ -545,6 +562,11 @@
         color-scheme: light dark;
         supported-color-schemes: light dark;
       }
+
+      :root {
+        color-scheme: light dark;
+        supported-color-schemes: light dark;
+      }
     </style>
     <!--[if mso]>
       <style type="text/css">
@@ -582,7 +604,7 @@
                   href="https://example.com"
                   class="f-fallback email-masthead_name"
                 >
-                  GrowGrade
+                  [Product Name]
                 </a>
               </td>
             </tr>
@@ -606,8 +628,10 @@
                   <tr>
                     <td class="content-cell">
                       <div class="f-fallback">
-                        <h1>Welcome, <%= data.name %>!</h1>
-                        <p>Thanks for choosing us , your otp is below</p>
+                        <h1>Welcome, <%= data.schoolName%></h1>
+                        <p>
+                          Thanks for choosing us , your otp is <%=data.token%>
+                        </p>
                         <!-- Action -->
                         <table
                           class="body-action"
@@ -631,12 +655,11 @@
                                 <tr>
                                   <td align="center">
                                     <a
-                                      style="color: white"
-                                      href="<%= data.url %>"
+                                      href="{{ action_url }}"
                                       class="f-fallback button"
                                       target="_blank"
-                                      ><%= data.token %>
-                                    </a>
+                                      >otp</a
+                                    >
                                   </td>
                                 </tr>
                               </table>
@@ -670,7 +693,10 @@
                           <a href="{{ live_chat_url }}">live chat</a> during
                           business hours.
                         </p>
-                        <p>Thanks, <br />GrowGrader and the GrowGrade team</p>
+                        <p>
+                          Thanks, <br /><%=data.schoolName%> and the GrowGrade
+                          team
+                        </p>
                         <p>
                           <strong>P.S.</strong> Need immediate help getting
                           started? Check out our
@@ -683,11 +709,8 @@
                           <tr>
                             <td>
                               <p class="f-fallback sub">
-                                If you’re having trouble with the button above,
-                                copy and paste the URL below into your web
-                                browser.
+                                use the otp code above to verify your account
                               </p>
-                              <p class="f-fallback sub">{{ action_url }}</p>
                             </td>
                           </tr>
                         </table>
@@ -710,7 +733,7 @@
                   <tr>
                     <td class="content-cell" align="center">
                       <p class="f-fallback sub align-center">
-                        [Company Name, LLC]
+                        GrowGrade
                         <br />1234 Street Rd. <br />Suite 1234
                       </p>
                     </td>

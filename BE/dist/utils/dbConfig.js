@@ -11,7 +11,7 @@ const url = process.env.DATABASE_URL;
 const mainConnection = () => {
     try {
         (0, mongoose_1.connect)(url).then(() => {
-            console.log("db conected");
+            console.log("db connected");
         });
     }
     catch (error) {
