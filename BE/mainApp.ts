@@ -1,8 +1,4 @@
-import { Application, NextFunction, Request, Response } from "express";
-import router from "./router/schoolRouter";
-import { mainError } from "./error/mainError";
-import { HTTP } from "./utils/enums";
-import { handleError } from "./error/handleError";
+import { Application, Request, Response } from "express";
 
 export const mainApp = (app: Application) => {
   try {

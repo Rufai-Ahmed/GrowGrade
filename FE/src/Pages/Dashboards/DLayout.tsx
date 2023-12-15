@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 export const DLayout = () => {
   return (
     <div>
-      <div className="flex transition-all duration-300 ">
+      <div className="flex">
         <Sider />
         <div className="flex justify-end w-full">
           <Outlet />
